@@ -12,12 +12,12 @@ import logger from '../helpers/logger';
  * @param {Response} res ExpressJS response node
  * @param {NextFunction} next ExpressJS function for call next middleware (or error middleware).
  */
-function errorMiddleware(error: any, req: Request, res: Response, next: NextFunction) {
+export function errorMiddleware(error: any, req: Request, res: Response, next: NextFunction) {
     const statusCode = error.status || 500;
 
     logger.error(error.message);
     logger.error(`screen: ${req.baseUrl}${req.path}`);
-    logger.error('status_code: statusCode');
+    logger.error(`status_code: ${statusCode}`);
     logger.error(`stack_trace: ${error.stack}`);
 
     res.status(statusCode).json({
@@ -34,14 +34,9 @@ function errorMiddleware(error: any, req: Request, res: Response, next: NextFunc
  * @param {Request} req ExpressJS request node
  * @param {Response} res ExpressJS response node
  */
-function notFoundMiddlware(req: Request, res: Response) {
-    logger.warn(`screen: ${req.baseUrl}${req.path}`);
+export function notFoundMiddlware(req: Request, res: Response) {
+    logger.warn(`not found screen: ${req.baseUrl}${req.path}`);
 
     // por seguridad no respondemos nada... es como si no existieramos
     res.status(404).send(); 
 }
-
-export {
-    errorMiddleware,
-    notFoundMiddlware
-};
