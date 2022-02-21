@@ -14,15 +14,15 @@ npm install
 npm run dev
 ```
 ## Other commands
-- Ejecutar los tests
+Ejecutar los tests
 ```
 npm test
 ```
-- Ejecutar api en produccion
+Ejecutar api en produccion
 ```
 npm start
 ```
-- Generar JS a partir del codigo Typescripy
+Generar JS a partir del codigo Typescript
 ```
 npm run build
 ```
