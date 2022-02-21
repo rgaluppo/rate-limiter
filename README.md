@@ -7,13 +7,25 @@ nvm use
 ```
 2. Instañar dependencias
 ```
-nvm install
+npm install
 ```
 3. Levantar la aplicacion localmente
 ```
-nvm run dev
+npm run dev
 ```
-
+## Other commands
+- Ejecutar los tests
+```
+npm test
+```
+- Ejecutar api en produccion
+```
+npm start
+```
+- Generar JS a partir del codigo Typescripy
+```
+npm run build
+```
 ## Examples
 ```curl
 curl -H "User-Id: 1" -X GET "http://localhost:4000/"
@@ -23,5 +35,5 @@ curl -H "User-Id: 1" -X GET "http://localhost:4000/"
 
 Otras decisiones importantes:
 - [Scaffolding](docs/scaffolding.md)
-- [Dependencias](docs/dependecies.md)
+- [Dependencias](docs/dependencies.md)
 - [Convenciones](docs/conventions.md)
