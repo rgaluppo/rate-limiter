@@ -1,4 +1,4 @@
-export default interface IFOAASMessage {
+export interface IFOAASMessage {
     message: string,
     subtitle: string,
 }
