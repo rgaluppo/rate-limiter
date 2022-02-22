@@ -7,7 +7,7 @@ import { datadogRecordInternalApiResponse, IInternalApiResponseExtraInfo, Intern
  * Se encarga de:
  *  - disparar logs correspondientes
  *  - responder al cliente cuando sucede un error
- * 
+ *
  */
 export function errorMiddleware (error: any, req: Request, res: Response, next: NextFunction) {
   const statusCode = error.status || 500
@@ -35,7 +35,7 @@ export function errorMiddleware (error: any, req: Request, res: Response, next: 
  * Se encarga de:
  *  - disparar logs correspondientes
  *  - responder al cliente cuando sucede requiere una ruta inexistente
- * 
+ *
  */
 export function notFoundMiddlware (req: Request, res: Response) {
   logger.warn(`not found screen: ${req.baseUrl}${req.path}`)
