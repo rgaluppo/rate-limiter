@@ -3,4 +3,4 @@
  * Ventaja:
  *  - la implementacion del logguer queda aislada.
  */
-export default console;
+export default console
