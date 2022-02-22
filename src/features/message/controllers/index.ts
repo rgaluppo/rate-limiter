@@ -1,1 +1,1 @@
-export { messageHandler } from './messageHandler';
+export { messageHandler } from './messageHandler'

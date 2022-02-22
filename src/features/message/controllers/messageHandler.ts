@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
 import { getMessage } from '../services/messages'
-import logger from '../../../helpers/logger'
 import { datadogRecordInternalApiResponse, IInternalApiResponseExtraInfo } from '../../../helpers/metrics'
 import { buildSignature } from '../services/signature'
 
@@ -10,7 +9,6 @@ export async function messageHandler (req:Request, res:Response, next:NextFuncti
     const message = await getMessage()
     const signature = buildSignature(userId, message)
 
-    logger.info('message handler: ', JSON.stringify(signature))
     const extraInfo: IInternalApiResponseExtraInfo = {
       statusCode: 200,
       path: req.path.toString(),
