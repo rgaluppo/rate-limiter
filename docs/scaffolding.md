@@ -27,6 +27,7 @@
 │   ├── types/ (opcional: tipos generales al proyecto)
 |   └── index.ts  (Entry point donde se inicializa el server)
 │
+├── .eslintrc.json
 ├── .gitignore
 ├── .npmrc
 ├── .nvmrc
