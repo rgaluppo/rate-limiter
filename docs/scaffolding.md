@@ -2,36 +2,42 @@
 
 ```
 |
-├── config/ (Configuración para producción y desarrollo)
+├── config/ (configuración para producción y desarrollo)
 │   ├── default-production.js
 │   └── default.js
 |
-├── docs/  (Documentacion del proyecto)
-├── src/  (App router y todo lo relacionado a la app)
+├── docs/  (documentacion del proyecto)
+├── src/  (app router y todo lo relacionado a la app)
 │   ├── features/ (features de la aplicación)
 │   │   └── message/
 │   │       ├── controllers/ (handlers para cada ruta del feature)
+|   |       ├── mocks/ (mocks de los servicios) 
+|   |       |   ├── cases/
+|   |       |   └── index.ts
 │   │       ├── services/ (servicios junto con sus tests unitarios)
 │   │       ├── tests/ (test e2e)
-|   |       ├── mocks/ (mocks de los servicios) 
 │   │       ├── types/ (definicion de tipos)
 │   │       └── index.ts (exporta los controllers)
 |   |
 │   ├── helpers/ (utils que podrian estar en una libreria compartida)
 │   ├── middlewares/ (middleware compartidos)
 │   ├── mocks/ (mocks server)
+|   |   ├── builders/
+│   │   └── index.ts
+|   |
 │   ├── server/
 │   │   ├── routes/
 │   │   └── index.ts (server express-router)
 │   |
-│   ├── types/ (opcional: tipos generales al proyecto)
-|   └── index.ts  (Entry point donde se inicializa el server)
+│   ├── types/ (tipos generales al proyecto)
+|   └── index.ts  (entry point donde se inicializa el server)
 │
 ├── .eslintrc.json
 ├── .gitignore
 ├── .npmrc
 ├── .nvmrc
 ├── jest.config.js
+├── package-lock.json
 ├── package.json
 ├── README.md
 └── tsconfig.js
