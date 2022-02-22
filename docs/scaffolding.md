@@ -17,7 +17,7 @@
 │   │       ├── types/ (definicion de tipos)
 │   │       └── index.ts (exporta los controllers)
 |   |
-│   ├── helpers/ (middleware compartidos)
+│   ├── helpers/ (utils que podrian estar en una libreria compartida)
 │   ├── middlewares/ (middleware compartidos)
 │   ├── mocks/ (mocks server)
 │   ├── server/

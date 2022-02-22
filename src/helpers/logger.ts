@@ -1,3 +1,6 @@
-// solamente es un wrapper de console.log
-// en un futuro, los logs productivos se pueden mandar a KIBANA.
+/**
+ * Es un wrapper de console.log
+ * Ventaja:
+ *  - la implementacion del logguer queda aislada.
+ */
 export default console;
