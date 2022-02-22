@@ -14,7 +14,7 @@ npm install
 npm run dev
 ```
 ## Other commands
-Ejecutar los tests
+Ejecutar los tests (junto con el linter)
 ```
 npm test
 ```
@@ -25,6 +25,10 @@ npm start
 Generar JS a partir del codigo Typescript
 ```
 npm run build
+```
+Ejecutar el Linter (es-lint)
+```
+npm run lint
 ```
 ## Examples
 ```curl
