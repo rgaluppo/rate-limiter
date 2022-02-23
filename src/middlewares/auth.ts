@@ -7,7 +7,7 @@ import { CustomError } from '../types/error'
 export function authMiddleware (req: Request, res: Response, next: NextFunction) {
   const userId = req.get('user-id')
   if (!userId) {
-    const badSession:CustomError = new Error('User not logged!')
+    const badSession:CustomError = new Error('Invalid params! The user must be logged in.')
     badSession.status = 400
     next(badSession)
   }

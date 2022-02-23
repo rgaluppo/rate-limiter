@@ -1,5 +1,7 @@
 # Challenge Rate Limiter
 
+## State machine
+![state chart](docs/assets/state-chart.png)
 ## Instalation
 1. Configurar la versión adecuada de NodeJS
 ```

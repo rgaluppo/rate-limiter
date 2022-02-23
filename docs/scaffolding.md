@@ -7,6 +7,7 @@
 │   └── default.js
 |
 ├── docs/  (documentacion del proyecto)
+|   └── assets/
 ├── src/  (app router y todo lo relacionado a la app)
 │   ├── features/ (features de la aplicación)
 │   │   └── message/
