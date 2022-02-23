@@ -1,4 +1,5 @@
 ## Scaffolding
+El proyecto tiene los archivos organizados de la siguiente forma:
 
 ```
 |

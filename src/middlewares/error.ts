@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import logger from '../helpers/logger'
-import { datadogRecordInternalApiResponse, IInternalApiResponseExtraInfo, InternalApiResponseType } from '../helpers/metrics'
+import { recordInternalApiResponse, IInternalApiResponseExtraInfo, InternalApiResponseType } from '../helpers/metrics'
+import { CustomError } from '../types/error'
 
 /**
  * Middleware de errores.
@@ -23,7 +24,7 @@ export function errorMiddleware (error: any, req: Request, res: Response, next: 
     redirect: false,
     redirectUrl: ''
   }
-  datadogRecordInternalApiResponse(type, extraInfo)
+  recordInternalApiResponse(type, extraInfo)
 
   res.status(statusCode).json({
     error: { msg: error.message }
@@ -32,14 +33,10 @@ export function errorMiddleware (error: any, req: Request, res: Response, next: 
 
 /**
  * Middleware para controlar rutas y/o verbos incorrectos
- * Se encarga de:
- *  - disparar logs correspondientes
- *  - responder al cliente cuando sucede requiere una ruta inexistente
  *
  */
-export function notFoundMiddlware (req: Request, res: Response) {
-  logger.warn(`not found screen: ${req.baseUrl}${req.path}`)
-
-  // por seguridad no respondemos nada... es como si no existieramos
-  res.status(404).send()
+export function notFoundMiddlware (req: Request, res: Response, next: NextFunction) {
+  const notFound:CustomError = new Error('Route not Founded!')
+  notFound.status = 404
+  next(notFound)
 }

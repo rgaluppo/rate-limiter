@@ -1,16 +1,16 @@
 ## Dependencies
-### Libreria vs Solicion ad-hoc
-Eleji una libreria para implemetar el rate limiter ya que vi las siguientes ventajas:
-- Codigo estandar y utilizado en varios proyectos.
+### Librería vs Solicion ad-hoc
+Eleji una librería para implemetar el rate limiter ya que vi las siguientes ventajas:
+- Código estándar y utilizado en varios proyectos.
 - Evito reinventar la rueda.
-- Esta libreria en particular permite cambiar el repositorio de datos (store), pudiendo usar Redis, MemCached, entre otros.
+- Esta librería en particular permite cambiar el repositorio de datos (store) pudiendo usar Redis, MemCached, entre otros.
 
 La principal desventaja es que quedo expuesto todas las vulnerabilidades y bugs presentes en la lib.
 
 Al elegir una librería tengo en cuenta los siguientes factores:
-- Si es utilizada en muchos proyectos.
-- Si tiene mantenimiento.
-- Las dependencias que tiene.
+- Cantidad de proyectos en la cuál es utilizada.
+- Frecuencia del mantenimiento.
+- Dependencias que necesita.
 
 ### Other dependencies
 Principales dependencias de la API:

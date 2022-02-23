@@ -22,7 +22,7 @@ export interface IExternalApiResponseExtraInfo {
  * @param {string} metricName The metric's name.
  * @param {Array<string>} customTags They are like: ['key:value', 'key2:value2'].
  */
-export function datadogRecordIncrement (metricName:string, customTags:string[]) {
+export function recordIncrement (metricName:string, customTags:string[]) {
   logger.info('METRIC INCREMENT >>', metricName, ...customTags)
 }
 
@@ -33,7 +33,7 @@ export function datadogRecordIncrement (metricName:string, customTags:string[]) 
  * @param {number} time API response time in miliseconds
  * @param {Array<string>} customTags They are like: ['key:value', 'key2:value2'].
  */
-function datadogRecordHistogram (metricName:string, time:number, customTags:string[]) {
+function recordHistogram (metricName:string, time:number, customTags:string[]) {
   logger.info('METRIC HISTOGRAM INCREMENT >>', metricName, time, ...customTags)
 }
 
@@ -43,7 +43,7 @@ function datadogRecordHistogram (metricName:string, time:number, customTags:stri
  * @param {InternalApiResponseType} type Indicates the type of the response.
  * @param {IInternalApiResponseExtraInfo} extraInfo Important info for metric propuses.
  */
-export function datadogRecordInternalApiResponse (
+export function recordInternalApiResponse (
   type:InternalApiResponseType,
   { statusCode = 200, path = '', redirect = false, redirectUrl = '' }:IInternalApiResponseExtraInfo
 ) {
@@ -55,7 +55,7 @@ export function datadogRecordInternalApiResponse (
         `redirect:${redirect}`,
         `redirect_url:${withoutQueryParams}`
   ]
-  datadogRecordIncrement('internal.api.response', tags)
+  recordIncrement('internal.api.response', tags)
 }
 
 /**
@@ -64,7 +64,7 @@ export function datadogRecordInternalApiResponse (
  * @param {ExternalApiResponseType} type Indicates the type of the response.
  * @param {IExternalApiResponseExtraInfo} extraInfo Important info for metric propuses.
  */
-export function datadogRecordExternalApiResponse (
+export function recordExternalApiResponse (
   type:ExternalApiResponseType,
   { api, action, path, statusCode, time }:IExternalApiResponseExtraInfo
 ) {
@@ -76,5 +76,5 @@ export function datadogRecordExternalApiResponse (
         `type:${type}`
   ]
 
-  datadogRecordHistogram('external.api.response', time, tags)
+  recordHistogram('external.api.response', time, tags)
 }

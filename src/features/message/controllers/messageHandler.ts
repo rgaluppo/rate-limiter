@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { getMessage } from '../services/messages'
-import { datadogRecordInternalApiResponse, IInternalApiResponseExtraInfo } from '../../../helpers/metrics'
+import { recordInternalApiResponse, IInternalApiResponseExtraInfo } from '../../../helpers/metrics'
 import { buildSignature } from '../services/signature'
 
 export async function messageHandler (req:Request, res:Response, next:NextFunction) {
@@ -15,7 +15,7 @@ export async function messageHandler (req:Request, res:Response, next:NextFuncti
       redirect: false,
       redirectUrl: ''
     }
-    datadogRecordInternalApiResponse('success', extraInfo)
+    recordInternalApiResponse('success', extraInfo)
 
     res.json(signature)
   } catch (error) {

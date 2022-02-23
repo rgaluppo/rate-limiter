@@ -2,6 +2,8 @@ import restclient from '../../../helpers/restclient'
 import config from 'config'
 import { IFoaasConfig } from '../types/config'
 import { IFOAASMessage } from '../types/data'
+import { recordExternalApiResponse } from '../../../helpers/metrics'
+import { performance } from 'perf_hooks'
 
 /**
  * FOAAS (Fuck Off As A Service) API call
@@ -16,7 +18,12 @@ export async function fetchMessage (userId:string):Promise<IFOAASMessage> {
     params: { user_id: userId }
   }
   try {
+    const startTime = performance.now()
     const response = await restclient.get(`${foaas.baseUrl}${fullPath}`, restclientConfig)
+
+    const time = performance.now() - startTime // en milisegundos
+    recordExternalApiResponse('success', { api: 'foass', action: foaas.path, statusCode: 200, path: fullPath, time })
+
     return response.data
   } catch (error: any) {
     if (error.response) { throw new Error(`Apicall fail with status: ${error.response.status}`) }
@@ -31,7 +38,7 @@ export async function fetchMessage (userId:string):Promise<IFOAASMessage> {
  * @param {IFoaasConfig} foaas that choose a path and variable values.
  * @returns {string} a full path
  */
-function buildFullPath (foaas:IFoaasConfig): String {
+function buildFullPath (foaas:IFoaasConfig): string {
   const { path } = foaas
   return path
     .replace(':behavior', foaas.behavior)
