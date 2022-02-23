@@ -9,7 +9,7 @@ Son los responsables de ejecutar las lógicas de negocio, realizar los apicalls 
 En caso de fallar, lanzan un error, que va a ser manejado por un [controller](#controllers). \
 Decidi nombrar distinto las funciones que aislan la lógica de negocio de las que aislan la lógica para consumir una dependecia externa. Las funciones que empiezan con `fetch...` contienen la lógica para consumir una dependencia externa, la cual incluye tambien el manejo de errores (4xx, 5xx y timeouts); mientras que las funciones que empiezan con `get...` contienen la lógica de negocio, es decir, cómo manipular la info obtenida por la dependencia externa.
 
-## Scaffolding
+### Scaffolding
 El proyecto tiene los archivos organizados de la siguiente forma:
 
 ```
