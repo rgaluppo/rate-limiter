@@ -9,43 +9,49 @@ Son los responsables de ejecutar las lógicas de negocio, realizar los apicalls 
 En caso de fallar, lanzan un error, que va a ser manejado por un [controller](#controllers). \
 Decidi nombrar distinto las funciones que aislan la lógica de negocio de las que aislan la lógica para consumir una dependecia externa. Las funciones que empiezan con `fetch...` contienen la lógica para consumir una dependencia externa, la cual incluye tambien el manejo de errores (4xx, 5xx y timeouts); mientras que las funciones que empiezan con `get...` contienen la lógica de negocio, es decir, cómo manipular la info obtenida por la dependencia externa.
 
-## Metrics
-Se generaron funciones base, que se utilizan para armar las dos metricas principales. Ellas son:
-- `recordIncrement`: representa un incremento para una métrica del tipo "contador".
-- `recordHistogram`: representa una entrada para una métrica del tipo "histograma".
-### recordInternalApiResponse
-Métrica que se dispara cada vez que el server responde al usuario. \
-Envía los siguientes datos:
-| Dato | Descripción |
-| --- | --- |
-| tipo | `success` , `error`, `error_unhandled` |
-| statusCode | HTTP status que recibe el cliente. |
-| path | ruta que maneja el controller que dispara esta métrica. |
-| redirect | indica si la respuesta le dice al usuario que tiene que redirigir a otro endopoint. |
-| redirectUrl | indica el destino de la redirección. |
+## Scaffolding
+El proyecto tiene los archivos organizados de la siguiente forma:
 
-### recordExternalApiResponse
-Métrica que se dispara cada vez que el server realiza un apicall a una dependencia. \
-Envía los siguientes datos:
-| Dato | Descripción |
-| --- | --- |
-| tipo |  `success` , `error` |
-| statusCode | HTTP status de la respuesta del apicall. |
-| api | Nombre de la dependecia. |
-| action | Endpoint consulado. |
-| time | Duración del request. |
-
-## Custom Express Middlewares
-Se crearon varios middlewares de ExpressJS para aislar ciertas lógicas de la API.
-
-### Authentication Middeware
-Aisla la lógica para comprobar si un usuario esta debidamente autenticado. En este caso, solamente valida que el request tenga el header `user-id`.
-
-### Error Middeware
-Es responsable de normalizar los errores antes de responder al cliente. Dispara los logs y métricas necesarias, entre las cuales se encuentra [recordInternalApiResponse](#recordexternalapiresponse).
-
-### Not Found Middeware
-Es responsable de gestionar las rutas inexistentes de la API.
-
-### Rate Limiter Middeware
-Es el responsable de controlar y hacer respetar el límite. Para ello se apoya en una librería externa.
+```
+|
+├── config/ (configuración para producción y desarrollo)
+│   ├── default-production.js
+│   └── default.js
+|
+├── docs/  (documentacion del proyecto)
+|   └── assets/
+├── src/  (app router y todo lo relacionado a la app)
+│   ├── features/ (features de la aplicación)
+│   │   └── message/
+│   │       ├── controllers/ (handlers para cada ruta del feature)
+|   |       ├── mocks/ (mocks de los servicios) 
+|   |       |   ├── cases/
+|   |       |   └── index.ts
+│   │       ├── services/ (servicios junto con sus tests unitarios)
+│   │       ├── tests/ (test e2e)
+│   │       ├── types/ (definicion de tipos)
+│   │       └── index.ts (exporta los controllers)
+|   |
+│   ├── helpers/ (utils que podrian estar en una libreria compartida)
+│   ├── middlewares/ (middleware compartidos)
+│   ├── mocks/ (mocks server)
+|   |   ├── builders/
+│   │   └── index.ts
+|   |
+│   ├── server/
+│   │   ├── routes/
+│   │   └── index.ts (server express-router)
+│   |
+│   ├── types/ (tipos generales al proyecto)
+|   └── index.ts  (entry point donde se inicializa el server)
+│
+├── .eslintrc.json
+├── .gitignore
+├── .npmrc
+├── .nvmrc
+├── jest.config.js
+├── package-lock.json
+├── package.json
+├── README.md
+└── tsconfig.js
+```

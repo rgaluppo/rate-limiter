@@ -59,6 +59,7 @@ Estados:
 - `error middle`: estado final. Envia el error al cliente.
 
 ### Other decisions:
-- [Scaffolding](docs/scaffolding.md)
-- [Dependencias](docs/dependencies.md)
 - [Convenciones](docs/conventions.md)
+- [Dependencias](docs/dependencies.md)
+- [Métricas](docs/metrics.md)
+- [Middlewares](docs/middlewares.md)
