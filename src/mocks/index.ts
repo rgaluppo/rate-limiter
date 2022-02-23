@@ -7,10 +7,9 @@ export interface IMockConfig {
   foaasNock: nock.Scope,
 }
 
-const allowUnmocked = process.env.NODE_ENV !== 'test'
 const { baseUrl: foaasBaseURL }:IFoaasConfig = config.get('foaas')
 const nockConfig:IMockConfig = {
-  foaasNock: nock(foaasBaseURL, { allowUnmocked }).persist()
+  foaasNock: nock(foaasBaseURL, { allowUnmocked: false }).persist()
 }
 
 export function init () {

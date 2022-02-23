@@ -8,11 +8,12 @@ import { IFOAASMessage } from '../types/data'
  *
  * @returns {IFOAASMessage} a message
  */
-export async function fetchMessage ():Promise<IFOAASMessage> {
+export async function fetchMessage (userId:string):Promise<IFOAASMessage> {
   const foaas : IFoaasConfig = config.get('foaas')
   const fullPath = buildFullPath(foaas)
   const restclientConfig = {
-    headers: { Accept: 'application/json' }
+    headers: { Accept: 'application/json' },
+    params: { user_id: userId }
   }
   try {
     const response = await restclient.get(`${foaas.baseUrl}${fullPath}`, restclientConfig)
@@ -33,13 +34,13 @@ export async function fetchMessage ():Promise<IFOAASMessage> {
 function buildFullPath (foaas:IFoaasConfig): String {
   const { path } = foaas
   return path
-    .replace('behavior', foaas.behavior)
-    .replace('company', foaas.company)
-    .replace('from', foaas.from)
-    .replace('name', foaas.name)
-    .replace('noun', foaas.noun)
-    .replace('thing', foaas.thing)
-    .replace('tool', foaas.tool)
+    .replace(':behavior', foaas.behavior)
+    .replace(':company', foaas.company)
+    .replace(':from', foaas.from)
+    .replace(':name', foaas.name)
+    .replace(':noun', foaas.noun)
+    .replace(':thing', foaas.thing)
+    .replace(':tool', foaas.tool)
 }
 
 /**
@@ -47,8 +48,8 @@ function buildFullPath (foaas:IFoaasConfig): String {
  *
  * @returns {Promise<string>} a messege
  */
-export async function getMessage (): Promise<string> {
-  const info = await fetchMessage()
+export async function getMessage (userId:string): Promise<string> {
+  const info = await fetchMessage(userId)
   const { message, subtitle } = info
 
   return `${message}${subtitle}`

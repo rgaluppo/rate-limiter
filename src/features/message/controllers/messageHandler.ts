@@ -6,7 +6,7 @@ import { buildSignature } from '../services/signature'
 export async function messageHandler (req:Request, res:Response, next:NextFunction) {
   try {
     const userId = req.get('user-id') ?? 'unknown'
-    const message = await getMessage()
+    const message = await getMessage(userId)
     const signature = buildSignature(userId, message)
 
     const extraInfo: IInternalApiResponseExtraInfo = {

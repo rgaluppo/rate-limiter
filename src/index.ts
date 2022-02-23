@@ -9,3 +9,5 @@ const port = config.get('port')
 app.listen(port, () => {
   console.log(`Server is running at http://${baseUrl}:${port}`)
 })
+
+export default app

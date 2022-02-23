@@ -1,12 +1,12 @@
-import { IMockConfig } from "../../../../mocks";
-import { buildFetchMessageError } from "../../../../mocks/builders/message.builder";
+import { IMockConfig } from '../../../../mocks'
+import { buildFetchMessage } from '../../../../mocks/builders/message.builder'
 
 /**
- * Case 2: the user '99999' try to get a messege and gets an error.
+ * Case 2: the user '2' try to get a messege five times.
  */
 export function case02 (config:IMockConfig) {
-    const userId = '99999';
-    const path = '/dumbledore/nachoman';
+  const userId = '2'
+  const path = '/dumbledore/nachoman'
 
-    buildFetchMessageError(config.foaasNock, path, userId);
+  buildFetchMessage(config.foaasNock, path, userId)
 }

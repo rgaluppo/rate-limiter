@@ -36,7 +36,7 @@ describe('Message services', () => {
       const response = { data: body }
       mockedRestclient.get.mockResolvedValue(response)
 
-      const result = await fetchMessage()
+      const result = await fetchMessage('111')
       expect(result).toMatchObject(body)
     })
     test('Bad request', async () => {
@@ -45,7 +45,7 @@ describe('Message services', () => {
       error.response = response
       mockedRestclient.get.mockRejectedValue(error)
 
-      await expect(fetchMessage()).rejects.toThrowError('Apicall fail with status: 400')
+      await expect(fetchMessage('111')).rejects.toThrowError('Apicall fail with status: 400')
     })
     test('Timeout', async () => {
       const request = { path: '' }
@@ -53,13 +53,13 @@ describe('Message services', () => {
       error.request = request
       mockedRestclient.get.mockRejectedValue(error)
 
-      await expect(fetchMessage()).rejects.toThrowError('Apical fail: timeout')
+      await expect(fetchMessage('1')).rejects.toThrowError('Apical fail: timeout')
     })
     test('Null pointer exception', async () => {
       const error: Error & { response?: Object, request?: Object } = new Error('Cannot read property "x" of undefined')
       mockedRestclient.get.mockRejectedValue(error)
 
-      await expect(fetchMessage()).rejects.toThrowError('Cannot read property "x" of undefined')
+      await expect(fetchMessage('1')).rejects.toThrowError('Cannot read property "x" of undefined')
     })
   })
   describe('getMessage method', () => {
@@ -71,7 +71,7 @@ describe('Message services', () => {
       const response = { data: body }
       mockedRestclient.get.mockResolvedValue(response)
 
-      const result = await getMessage()
+      const result = await getMessage('1')
       expect(result).toBe('foobar')
     })
     test('fetchMessage raise an error', async () => {
@@ -80,7 +80,7 @@ describe('Message services', () => {
       error.response = response
       mockedRestclient.get.mockRejectedValue(error)
 
-      await expect(getMessage()).rejects.toThrowError('Apicall fail with status: 400')
+      await expect(getMessage('1')).rejects.toThrowError('Apicall fail with status: 400')
     })
   })
 })
