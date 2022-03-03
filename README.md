@@ -21,15 +21,28 @@ nvm use
 ```
 npm install
 ```
-3. Levantar la aplicacion localmente
+3. Levantar el servidor de Redis (solamente si usamos el "Store" de Redist)
+```
+npm run redis-start
+```
+4. Levantar la aplicacion localmente
 ```
 npm run dev
 ```
+5. Al terminar, cerrar las consolas y para el servidor de Redis (solamente si usamos el "Store" de Redist)
+```
+npm run redis-stop
+```
+
+> Para usar el "store" de Redis, es necesario [tenerlo instalado](https://www.kindacode.com/article/how-to-install-redis-on-macos-windows-and-ubuntu/).
+
 ### Other commands
 - Ejecutar los tests (junto con el linter): `npm test`
 - Ejecutar api en produccion: `npm start`
 - Generar JS a partir del codigo Typescript: `npm run build`
 - Ejecutar el Linter (es-lint): `npm run lint`
+- Levantar el servidor de Redis: `npm run redis-start`
+- Matar el servidor de Redis: `npm run redis-stop`
 
 ## Examples
 ```curl

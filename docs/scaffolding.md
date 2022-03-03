@@ -22,6 +22,11 @@ El proyecto tiene los archivos organizados de la siguiente forma:
 │   │       └── index.ts (exporta los controllers)
 |   |
 │   ├── helpers/ (utils que podrian estar en una libreria compartida)
+|   |   ├── stores/ (ejemplos de implementaciones de un Store)
+|   |   ├── logger.ts
+|   |   ├── metrics.ts
+│   │   └── restclient.ts
+|   |   
 │   ├── middlewares/ (middleware compartidos)
 │   ├── mocks/ (mocks server)
 |   |   ├── builders/
