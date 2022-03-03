@@ -20,6 +20,7 @@ El proyecto tiene los archivos organizados de la siguiente forma:
 |
 ├── docs/  (documentacion del proyecto)
 |   └── assets/
+|
 ├── src/  (app router y todo lo relacionado a la app)
 │   ├── features/ (features de la aplicación)
 │   │   └── message/
@@ -27,12 +28,18 @@ El proyecto tiene los archivos organizados de la siguiente forma:
 |   |       ├── mocks/ (mocks de los servicios) 
 |   |       |   ├── cases/
 |   |       |   └── index.ts
+|   |       |
 │   │       ├── services/ (servicios junto con sus tests unitarios)
 │   │       ├── tests/ (test e2e)
 │   │       ├── types/ (definicion de tipos)
 │   │       └── index.ts (exporta los controllers)
 |   |
 │   ├── helpers/ (utils que podrian estar en una libreria compartida)
+|   |   ├── stores/ (ejemplos de implementaciones de un Store)
+|   |   ├── logger.ts
+|   |   ├── metrics.ts
+│   │   └── restclient.ts
+|   |
 │   ├── middlewares/ (middleware compartidos)
 │   ├── mocks/ (mocks server)
 |   |   ├── builders/
@@ -45,6 +52,7 @@ El proyecto tiene los archivos organizados de la siguiente forma:
 │   ├── types/ (tipos generales al proyecto)
 |   └── index.ts  (entry point donde se inicializa el server)
 │
+├── .eslintignore
 ├── .eslintrc.json
 ├── .gitignore
 ├── .npmrc
