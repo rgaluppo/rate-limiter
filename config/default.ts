@@ -2,7 +2,7 @@ export default {
   port: 4000,
   baseUrl: 'localhost',
   limiter: {
-    timeWindow: 10 * 1000, // 10 seconds
+    timeWindow: 10, // in seconds
     maximumRate: 5
   },
   restclient: {
