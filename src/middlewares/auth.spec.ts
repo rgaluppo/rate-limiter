@@ -16,6 +16,6 @@ describe('Auth middle', () => {
   it('stop the request and go to the error middleware', () => {
     const mockRequest: Partial<Request> = { get: jest.fn() }
     authMiddleware(mockRequest as unknown as Request, mockResponse as Response, nextFunction)
-    expect(nextFunction).toHaveBeenCalledWith(new Error('Error: Invalid params! The user must be logged in.'))
+    expect(nextFunction).toHaveBeenCalledWith(new Error('Invalid params! The user must be logged in.'))
   })
 })

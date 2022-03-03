@@ -1,12 +1,22 @@
 import app from '../../../index'
 import supertest from 'supertest'
+import { MapStore } from '../../../helpers/stores/map'
 
 const request = supertest(app)
 const tenSeconds = 10 * 1000
 const seventySeconds = 70 * 1000
 jest.setTimeout(seventySeconds)
 
+const store = new MapStore()
+
 describe('Use cases', () => {
+  beforeAll(async () => {
+    await store.connect()
+  })
+  afterAll(async () => {
+    await store.disconnect()
+  })
+
   test('One hit', async () => {
     const userId = '1'
     await request.get('/message')
